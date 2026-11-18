@@ -49,7 +49,13 @@ export async function atualizarBase(base, { fetchImpl = fetch, agora = new Date(
   for (const f of base.fontes) {
     f.ultimaVerificacaoEm = iso;
     try {
-      const conteudo = await buscar(f, fetchImpl);
+      let conteudo;
+      try {
+        conteudo = await buscar(f, fetchImpl);
+      } catch {
+        // uma nova tentativa: sites públicos oscilam
+        conteudo = await buscar(f, fetchImpl);
+      }
       if (!conteudo || conteudo.length < 10) throw new Error("conteúdo vazio");
       const hash = sha256(conteudo);
       if (!f.ultimoHash) {
@@ -68,7 +74,8 @@ export async function atualizarBase(base, { fetchImpl = fetch, agora = new Date(
     } catch (e) {
       falhas += 1;
       f.status = "falha";
-      f.erro = e instanceof Error ? e.message : String(e);
+      const causa = e && e.cause ? ` — ${e.cause.code ?? ""} ${e.cause.message ?? ""}`.trimEnd() : "";
+      f.erro = (e instanceof Error ? e.message : String(e)) + causa;
       alertas.push(`Não foi possível consultar ${f.orgao}: ${f.titulo} (${f.erro}).`);
     }
   }
