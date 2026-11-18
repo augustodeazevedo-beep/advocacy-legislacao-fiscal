@@ -40,7 +40,7 @@ async function buscar(fonte, fetchImpl) {
 }
 
 /** Atualiza a base com o resultado de uma rodada de verificação. Função pura em relação ao relógio e à rede injetados. */
-export async function atualizarBase(base, { fetchImpl = fetch, agora = new Date() } = {}) {
+export async function atualizarBase(base, { fetchImpl = fetch, agora = new Date(), esperaMs = 8000 } = {}) {
   const iso = agora.toISOString();
   const alertas = [];
   let falhas = 0;
@@ -49,12 +49,16 @@ export async function atualizarBase(base, { fetchImpl = fetch, agora = new Date(
   for (const f of base.fontes) {
     f.ultimaVerificacaoEm = iso;
     try {
+      // até 3 tentativas com espera crescente: sites públicos oscilam e às vezes recusam conexões
       let conteudo;
-      try {
-        conteudo = await buscar(f, fetchImpl);
-      } catch {
-        // uma nova tentativa: sites públicos oscilam
-        conteudo = await buscar(f, fetchImpl);
+      for (let tentativa = 1; ; tentativa++) {
+        try {
+          conteudo = await buscar(f, fetchImpl);
+          break;
+        } catch (e) {
+          if (tentativa >= 3) throw e;
+          await new Promise((r) => setTimeout(r, esperaMs * tentativa));
+        }
       }
       if (!conteudo || conteudo.length < 10) throw new Error("conteúdo vazio");
       const hash = sha256(conteudo);
