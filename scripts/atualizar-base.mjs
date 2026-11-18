@@ -24,10 +24,12 @@ async function buscar(fonte, fetchImpl) {
   const ctrl = new AbortController();
   const t = setTimeout(() => ctrl.abort(), 30000);
   try {
-    const res = await fetchImpl(fonte.url, {
-      signal: ctrl.signal,
-      headers: { "User-Agent": "advocacy-legislacao-fiscal/1.0 (verificacao diaria; +https://github.com/augustodeazevedo-beep/advocacy-legislacao-fiscal)" },
-    });
+    const headers = { "User-Agent": "advocacy-legislacao-fiscal/1.0 (verificacao diaria; +https://github.com/augustodeazevedo-beep/advocacy-legislacao-fiscal)" };
+    // A API do GitHub limita consultas anônimas; no robô usamos o token automático do próprio Actions.
+    if (fonte.url.startsWith("https://api.github.com/") && process.env.GITHUB_TOKEN) {
+      headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+    }
+    const res = await fetchImpl(fonte.url, { signal: ctrl.signal, headers });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     if (fonte.tipo === "github-release") {
       const j = await res.json();

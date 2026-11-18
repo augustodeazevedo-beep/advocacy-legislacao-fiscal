@@ -26,6 +26,8 @@ jobs:
         run: node --test scripts/atualizar-base.test.mjs
       - name: Consultar as fontes oficiais
         id: verificar
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: node scripts/atualizar-base.mjs
       - name: Publicar a base atualizada
         run: |
