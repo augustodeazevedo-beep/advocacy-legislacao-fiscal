@@ -1,0 +1,49 @@
+name: Verificação diária da legislação fiscal
+
+on:
+  schedule:
+    - cron: "0 8 * * *" # 05h00 em Brasília, todos os dias
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: verificacao-diaria
+  cancel-in-progress: false
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Testes do verificador
+        run: node --test scripts/atualizar-base.test.mjs
+      - name: Consultar as fontes oficiais
+        id: verificar
+        run: node scripts/atualizar-base.mjs
+      - name: Publicar a base atualizada
+        run: |
+          git config user.name "advocacy-bot"
+          git config user.email "advocacy-bot@users.noreply.github.com"
+          git add base.json
+          git diff --cached --quiet || git commit -m "chore: verificação diária da legislação fiscal"
+          git push
+      - name: Abrir alerta de revisão humana (HITL)
+        if: steps.verificar.outputs.mudou == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "Revisar mudança em fonte oficial ($(date -u +%F))" \
+            --body "O verificador detectou mudança em uma ou mais fontes. Veja \`base.json\` (campo alertas). Após conferir a norma, atualize \`parametros\` se necessário e coloque \`revisaoPendente\` em \`false\`."
+      - name: Falhar se a verificação não foi concluída
+        if: steps.verificar.outputs.valida == 'false'
+        run: |
+          echo "Mais da metade das fontes falhou; a data de verificação não foi atualizada."
+          exit 1

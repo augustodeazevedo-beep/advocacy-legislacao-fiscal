@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "verificadoEm": "2026-11-18T08:00:00.000Z",
+  "parametros": {
+    "cbsReferencia": 9.21,
+    "ibsReferencia": 18.7,
+    "statusReferencia": "estimativa",
+    "fonteReferencia": "Estimativa do CG-IBS (jul/2026); a CBS será fixada por resolução do Senado (prazo informado: 15/12/2026).",
+    "revisadoEm": "2026-11-18"
+  },
+  "fontes": [
+    {
+      "id": "uniao-lc214",
+      "orgao": "Presidência da República (Planalto)",
+      "esfera": "uniao",
+      "titulo": "Lei Complementar 214/2025 (IBS, CBS e IS)",
+      "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm",
+      "tipo": "html"
+    },
+    {
+      "id": "uniao-ec132",
+      "orgao": "Presidência da República (Planalto)",
+      "esfera": "uniao",
+      "titulo": "Emenda Constitucional 132/2023 (Reforma Tributária)",
+      "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm",
+      "tipo": "html"
+    },
+    {
+      "id": "uniao-rfb-regime-regular",
+      "orgao": "Receita Federal",
+      "esfera": "uniao",
+      "titulo": "Calculadora RTC — regime regular (última versão publicada)",
+      "url": "https://api.github.com/repos/ReceitaFederal/calculadora-rtc-regime-regular/releases/latest",
+      "tipo": "github-release"
+    },
+    {
+      "id": "uniao-rfb-simples",
+      "orgao": "Receita Federal",
+      "esfera": "uniao",
+      "titulo": "Calculadora RTC — Simples Nacional (última versão publicada)",
+      "url": "https://api.github.com/repos/ReceitaFederal/calculadora-rtc-simples-nacional/releases/latest",
+      "tipo": "github-release"
+    },
+    {
+      "id": "estados-confaz",
+      "orgao": "CONFAZ",
+      "esfera": "estado",
+      "titulo": "Portal do CONFAZ (convênios e atos do ICMS) — URL a validar na 1ª execução",
+      "url": "https://www.confaz.fazenda.gov.br/",
+      "tipo": "html"
+    },
+    {
+      "id": "estado-rs-legislacao",
+      "orgao": "SEFAZ/RS",
+      "esfera": "estado",
+      "uf": "RS",
+      "titulo": "Legislação tributária estadual do RS (ICMS e ITCMD) — URL a validar na 1ª execução",
+      "url": "https://www.legislacao.sefaz.rs.gov.br/Site/Index.aspx",
+      "tipo": "html"
+    }
+  ],
+  "alertas": [],
+  "revisaoPendente": false
+}
