@@ -16,7 +16,7 @@
       "titulo": "Lei Complementar 214/2025 (IBS, CBS e IS)",
       "url": "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm",
       "tipo": "html",
-      "ultimaVerificacaoEm": "2026-11-23T19:46:40.978Z",
+      "ultimaVerificacaoEm": "2026-11-24T19:17:12.257Z",
       "status": "falha",
       "ultimoHash": "58ce735618eea618d8223837725cfa42a0a3054b90b4248f7f1795372f2859d3",
       "erro": "fetch failed — ECONNRESET read ECONNRESET"
@@ -28,7 +28,7 @@
       "titulo": "Emenda Constitucional 132/2023 (Reforma Tributária)",
       "url": "https://www.planalto.gov.br/ccivil_03/constituicao/emendas/emc/emc132.htm",
       "tipo": "html",
-      "ultimaVerificacaoEm": "2026-11-23T19:46:40.978Z",
+      "ultimaVerificacaoEm": "2026-11-24T19:17:12.257Z",
       "status": "falha",
       "ultimoHash": "58ce735618eea618d8223837725cfa42a0a3054b90b4248f7f1795372f2859d3",
       "erro": "fetch failed — ECONNRESET read ECONNRESET"
@@ -40,7 +40,7 @@
       "titulo": "Calculadora RTC — regime regular (última versão publicada)",
       "url": "https://api.github.com/repos/ReceitaFederal/calculadora-rtc-regime-regular/releases/latest",
       "tipo": "github-release",
-      "ultimaVerificacaoEm": "2026-11-23T19:46:40.978Z",
+      "ultimaVerificacaoEm": "2026-11-24T19:17:12.257Z",
       "status": "ok",
       "ultimoHash": "0da94a828447334abf0ffb8466789157ea649c015e3f4b1612687a447b2fb117",
       "ultimaMudancaEm": "2026-11-20T16:39:05.456Z"
@@ -52,7 +52,7 @@
       "titulo": "Calculadora RTC — Simples Nacional (última versão publicada)",
       "url": "https://api.github.com/repos/ReceitaFederal/calculadora-rtc-simples-nacional/releases/latest",
       "tipo": "github-release",
-      "ultimaVerificacaoEm": "2026-11-23T19:46:40.978Z",
+      "ultimaVerificacaoEm": "2026-11-24T19:17:12.257Z",
       "status": "ok",
       "ultimoHash": "d08b64cf1d9a74f2d50bc2a3208c0416769fcdc04d81947dd7578634537d8e3b",
       "ultimaMudancaEm": "2026-11-20T16:39:05.456Z"
@@ -64,7 +64,7 @@
       "titulo": "Portal do CONFAZ (convênios e atos do ICMS) — URL a validar na 1ª execução",
       "url": "https://www.confaz.fazenda.gov.br/",
       "tipo": "html",
-      "ultimaVerificacaoEm": "2026-11-23T19:46:40.978Z",
+      "ultimaVerificacaoEm": "2026-11-24T19:17:12.257Z",
       "status": "falha",
       "erro": "fetch failed — UND_ERR_CONNECT_TIMEOUT Connect Timeout Error (attempted address: www.confaz.fazenda.gov.br:443, timeout: 10000ms)"
     },
@@ -76,7 +76,7 @@
       "titulo": "Legislação tributária estadual do RS (ICMS e ITCMD) — URL a validar na 1ª execução",
       "url": "https://www.legislacao.sefaz.rs.gov.br/Site/Index.aspx",
       "tipo": "html",
-      "ultimaVerificacaoEm": "2026-11-23T19:46:40.978Z",
+      "ultimaVerificacaoEm": "2026-11-24T19:17:12.257Z",
       "status": "falha",
       "erro": "fetch failed — UND_ERR_CONNECT_TIMEOUT Connect Timeout Error (attempted address: www.legislacao.sefaz.rs.gov.br:443, timeout: 10000ms)"
     }
